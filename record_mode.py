@@ -8,3 +8,8 @@ from board import SCL, SDA
 import digitalio
 import busio
 from adafruit_neotrellis.neotrellis import NeoTrellis
+
+def record():
+
+
+def play():
