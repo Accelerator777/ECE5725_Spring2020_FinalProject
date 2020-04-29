@@ -56,7 +56,7 @@ def blink(event):
 			play_file(shuffled_names[event.number])
 			print("START MUSIC")
 	# turn the LED off when a rising edge is detected
-	elif event.edge == NeoTrellis.EDGE_FALLING:
+	if event.edge == NeoTrellis.EDGE_FALLING:
 		print("STOP MUSIC")
 		pygame.mixer.music.stop()	
 		trellis.pixels[event.number] = shuffled_colors[event.number]
