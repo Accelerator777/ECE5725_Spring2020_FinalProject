@@ -49,6 +49,9 @@ NOTE_C6 = 7
 NOTE_D6 = 8
 NOTE_E6 = 9
 
+melody_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5
+    ]
+
 melody_lemon = [NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5, NOTE_D6,
     NOTE_B5, NOTE_G5, NOTE_E5, NOTE_B5, NOTE_A5, NOTE_G5,
     NOTE_C5, NOTE_G5, NOTE_E5,
@@ -65,6 +68,22 @@ melody_lemon = [NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5, NOTE_D6,
     NOTE_G5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_G5, NOTE_C6,
     NOTE_E6, NOTE_D6, NOTE_D6, NOTE_D6, NOTE_C6, NOTE_C6]
 
+noteDurations_lemon = [
+    2, 2, 4, 2, 5, 4,
+    4, 2, 5, 4, 4, 2,
+    6, 4, 10,
+
+    2, 2, 6, 4, 2, 2, 6, 4, 3,
+    1, 4, 2, 4, 2, 2, 10,
+
+    2, 2, 4, 2, 6,
+    4, 4, 2, 6, 4, 4, 2, 6, 4, 10,
+
+    2, 2, 6, 4, 2, 2, 4,
+    4, 4, 4, 6, 2, 6,
+    2, 10]
+
+
 audio_file = None
 
 pygame.mixer.pre_init(44100, -16, 2, 2048)
@@ -78,15 +97,11 @@ def play_file(audio_filename):
 def blink(event):
 	# turn the LED on when a rising edge is detected
 	if event.edge == NeoTrellis.EDGE_RISING:  # Trellis button pushed
-		trellis.pixels[event.number] = WHITE
 		if shuffled_names[event.number] != "":
 			play_file(shuffled_names[event.number])
-			print("START MUSIC")
 	# turn the LED off when a rising edge is detected
 	if event.edge == NeoTrellis.EDGE_FALLING:
-		print("STOP MUSIC")
 		pygame.mixer.music.stop()	
-		trellis.pixels[event.number] = shuffled_colors[event.number]
 
 path = "/home/pi/Final/piano/"
 wavefiles = [file for file in os.listdir(path) if (file.endswith(".ogg") and not file.startswith("._"))]
@@ -124,14 +139,20 @@ for i in range(16):
 	time.sleep(0.05)
  
 for i in range(16):
-	trellis.pixels[i] = shuffled_colors[i]
+	trellis.pixels[i] = OFF
 	time.sleep(0.05)
 
 while True:
-	# call the sync function call any triggered callbacks
-	trellis.sync()
-	
+	for i in range(len(melody_lemon)):
+		trellis.pixels[melody_lemon[i]] = COLOR_TUPLES[i%len(COLOR_TUPLES)]
 
 
-	# the trellis can only be read every 17 milliseconds or so
-	time.sleep(0.001)
+		time_start = time.time()
+		while (time.time() - time_start < 0.25*noteDurations_lemon[i]):
+			# call the sync function call any triggered callbacks
+			trellis.sync()
+
+			# the trellis can only be read every 1 milliseconds or so
+			time.sleep(0.001)
+			
+		trellis.pixels[melody_lemon[i]] = OFF
