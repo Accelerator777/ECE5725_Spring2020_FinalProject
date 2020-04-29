@@ -38,6 +38,33 @@ Shuffled = False
 wavnames = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 shuffled_names = list(wavnames)  # Duplicate list, wavnames is our reference
 
+NOTE_C5 = 0
+NOTE_D5 = 1
+NOTE_E5 = 2
+NOTE_F5 = 3
+NOTE_G5 = 4
+NOTE_A5 = 5
+NOTE_B5 = 6
+NOTE_C6 = 7
+NOTE_D6 = 8
+NOTE_E6 = 9
+
+melody_lemon = [NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5, NOTE_D6,
+    NOTE_B5, NOTE_G5, NOTE_E5, NOTE_B5, NOTE_A5, NOTE_G5,
+    NOTE_C5, NOTE_G5, NOTE_E5,
+
+    NOTE_D5, NOTE_E5, NOTE_F5,
+    NOTE_C6, NOTE_B5, NOTE_C6, NOTE_G5, NOTE_F5, NOTE_E5,
+    NOTE_F5, NOTE_F5, NOTE_F5, NOTE_C6, NOTE_B5, NOTE_A5, NOTE_G5,
+
+    NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5,
+    NOTE_D6, NOTE_B5, NOTE_G5, NOTE_E5, NOTE_B5, NOTE_A5, NOTE_G5,
+    NOTE_C5, NOTE_G5, NOTE_E5,
+
+    NOTE_D5, NOTE_E5, NOTE_F5,
+    NOTE_G5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_G5, NOTE_C6,
+    NOTE_E6, NOTE_D6, NOTE_D6, NOTE_D6, NOTE_C6, NOTE_C6]
+
 audio_file = None
 
 pygame.mixer.pre_init(44100, -16, 2, 2048)
@@ -103,5 +130,8 @@ for i in range(16):
 while True:
 	# call the sync function call any triggered callbacks
 	trellis.sync()
+	
+
+
 	# the trellis can only be read every 17 milliseconds or so
 	time.sleep(0.001)
