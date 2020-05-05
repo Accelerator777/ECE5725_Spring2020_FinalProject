@@ -59,11 +59,11 @@ def main_menu():
     pygame.display.flip()
 
 # free play mode menu
-def free_menu():
+def free_menu(string):
     screen.fill(BLACK)
-
+	
     title_text={'free mode':(160,25)}
-    button_text={'piano':(50,220),'guitar':(160,220),'back':(270,220)}
+    button_text={'piano':(50,220),'guitar':(120,220),'reselect':(200,220),'back':(270,220)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
@@ -73,6 +73,11 @@ def free_menu():
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
 
+    text=font_1.render(string,True,WHITE)
+    textRect=text.get_rect()
+    textRect.center=(160,120)
+    screen.blit(text,textRect)
+	
     pygame.display.flip()
 
 # guide play mode menu
@@ -80,7 +85,7 @@ def guide_menu(string):
     screen.fill(BLACK)
 	
     title_text={'guide mode':(160,25)}
-    button_text={'piano':(50,220),'guitar':(160,220),'back':(270,220)}
+    button_text={'piano':(50,220),'guitar':(120,220),'reselect':(200,220),'back':(270,220)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
@@ -132,14 +137,14 @@ while code_running:
                     if x<80: #free mode
                         flag_main = False
                         flag_free = True
-                        free_menu()
+                        free_menu("")
 
-                    elif x>140 and x<180: #guide mode
+                    elif x>120 and x<200: #guide mode
                         flag_main = False
                         flag_guide = True
                         guide_menu("")
 
-                    elif x>240: #record mode
+                    elif x>230: #record mode
                         flag_main = False
                         flag_record = True
                         record_menu("")
@@ -153,22 +158,28 @@ while code_running:
                     if x<80: #free mode
                         flag_main = False
                         flag_free = True
+                        free_menu("Instrument: Piano")
                         status = free_mode.run("piano")
                         if status==0:
                             flag_main = True
                             flag_free = False
                             main_menu()
+                        elif status==1:
+                            free_menu("Select instrument")
 
-                    elif x>140 and x<180:
+                    elif x>100 and x<140:
                         flag_main = False
                         flag_free = True
+                        free_menu("Instrument: Guitar")
                         status = free_mode.run("guitar")
                         if status==0:
                             flag_main = True
                             flag_free = False
                             main_menu()
+                        elif status==1:
+                            free_menu("Select instrument")
 
-                    if x>240:	# back to main menu
+                    elif x>240:	# back to main menu
                         flag_main = True
                         flag_free = False
                         main_menu()
@@ -181,22 +192,28 @@ while code_running:
                     if x<80: #free mode
                         flag_main = False
                         flag_guide = True
+                        guide_menu("Instrument: Piano")
                         status = guide_mode.run("piano")
                         if status==0:
                             flag_main = True
                             flag_guide = False
                             main_menu()
+                        elif status==1:
+                            guide_menu("Select instrument")
 
-                    elif x>140 and x<180:
+                    elif x>100 and x<140:
                         flag_main = False
                         flag_guide = True
+                        guide_menu("Instrument: Guitar")
                         status = guide_mode.run("guitar")
                         if status==0:
                             flag_main = True
                             flag_guide = False
                             main_menu()
-                            
-                    if x>240:	# back to main menu
+                        elif status==1:
+                            guide_menu("Select instrument")
+
+                    elif x>240:	# back to main menu
                         flag_main = True
                         flag_guide = False
                         main_menu()

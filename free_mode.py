@@ -124,9 +124,9 @@ def run(instrument):
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
-                    if x<80:
+                    if x>180 and x<220:
                         return 1
-                    elif x>200:
+                    elif x>240:
                         for i in range(16):
                             trellis.pixels[i] = OFF
                         return 0
