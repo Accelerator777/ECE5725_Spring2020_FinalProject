@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import free_mode
 import guide_mode
+import record_mode
 import voice_recognition
 
 GPIO.setmode(GPIO.BCM)
@@ -132,11 +133,6 @@ while code_running:
                         flag_main = False
                         flag_free = True
                         free_menu()
-<<<<<<< HEAD
-                        
-=======
-
->>>>>>> a9409b8e5048744ca32d973ce10c49daa9a00c91
                     elif x>140 and x<180: #guide mode
                         flag_main = False
                         flag_guide = True
