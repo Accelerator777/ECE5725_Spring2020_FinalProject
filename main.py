@@ -3,10 +3,10 @@ from pygame.locals import*
 import os
 import RPi.GPIO as GPIO
 import time
-from free_mode import*
+import free_mode
 import guide_mode
-import record_mode
-import voice_recognition
+#import record_mode
+#import voice_recognition
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -178,6 +178,24 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
+                    if x<80: #free mode
+                        flag_main = False
+                        flag_guide = True
+                        status = guide_mode.run("piano")
+                        if status==0:
+                            flag_main = True
+                            flag_guide = False
+                            main_menu()
+
+                    elif x>140 and x<180:
+                        flag_main = False
+                        flag_guide = True
+                        status = guide_mode.run("guitar")
+                        if status==0:
+                            flag_main = True
+                            flag_guide = False
+                            main_menu()
+                            
                     if x>240:	# back to main menu
                         flag_main = True
                         flag_guide = False

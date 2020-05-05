@@ -76,7 +76,7 @@ def run(instrument):
     shuffled_names = list(wavnames)  # Duplicate list, wavnames is our reference
 
     wavefiles = [file for file in os.listdir(path)
-                if (file.endswith(".wav") and not file.startswith("._"))]
+                if (file.endswith(".ogg") and not file.startswith("._"))]
     if len(wavefiles) < 1:
         print("No wav files found in sounds directory")
     else:
