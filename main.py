@@ -3,10 +3,10 @@ from pygame.locals import*
 import os
 import RPi.GPIO as GPIO
 import time
-import free_mode
-import guide_mode
-import record_mode
-import voice_recognition
+#from free_mode import*
+#from guide_mode import*
+#from record_mode import*
+#from voice_recognition import*
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -133,12 +133,7 @@ while code_running:
                         flag_main = False
                         flag_free = True
                         free_menu()
-                        status = play_sound.run("sounds")
-                        if status==0:
-                            flag_main = True
-                            flag_free = False
-                            main_menu()
-
+                        
                     elif x>140 and x<180: #guide mode
                         flag_main = False
                         flag_guide = True
