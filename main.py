@@ -3,7 +3,7 @@ from pygame.locals import*
 import os
 import RPi.GPIO as GPIO
 import time
-import free_mode
+from free_mode import*
 import guide_mode
 import record_mode
 import voice_recognition
