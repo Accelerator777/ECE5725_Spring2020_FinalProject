@@ -223,7 +223,16 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
-                    if x>240:	# back to main menu
+                    if x<80:
+                        record_menu("Recording...")
+                    
+                    elif x>100 and x<140:
+                        record_menu("Playing...")
+
+                    elif x>180 and x<220:
+                        record_menu("Loading...")
+                        
+                    elif x>240:	# back to main menu
                         flag_main = True
                         flag_record = False
                         main_menu()
