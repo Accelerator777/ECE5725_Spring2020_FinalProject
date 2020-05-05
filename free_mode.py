@@ -5,6 +5,7 @@ import os
 import random
 import board
 from board import SCL, SDA
+# import audioio
 import digitalio
 import busio
 from adafruit_neotrellis.neotrellis import NeoTrellis
@@ -25,10 +26,8 @@ i2c_bus = busio.I2C(SCL, SDA)
 trellis = NeoTrellis(i2c_bus)
 print("NeoTrellis created")
 
-path = ""
 instrument = ""
-
-audio_file = None
+path = ""
 
 COLORS = ["RED", "YELLOW", "GREEN", "CYAN", "BLUE", "PURPLE", "WHITE"]
 COLOR_TUPLES = [RED, YELLOW, GREEN, CYAN, BLUE, PURPLE, WHITE]
@@ -41,29 +40,29 @@ Shuffled = False
 wavnames = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 shuffled_names = list(wavnames)  # Duplicate list, wavnames is our reference
 
+audio_file = None
+
+pygame.mixer.pre_init(44100, -16, 2, 2048)
+pygame.mixer.init()
+
 def play_file(audio_filename):
-    global audio_file
-    if audio_file:
-        audio_file.close()
-    audio_name = path+audio_filename
-    print(audio_file)
-    audio_file = open(path+audio_filename, "rb")
-    print("Playing "+audio_filename+".")
-    os.system('omxplayer '+audio_name+' &')
+	pygame.mixer.music.load(path+audio_filename)
+	pygame.mixer.music.play()
 
 # this will be called when button events are received
 def blink(event):
-    # turn the LED on when a rising edge is detected
-    if event.edge == NeoTrellis.EDGE_RISING:  # Trellis button pushed
-        print("Button "+str(event.number)+" pushed")
-        if event.number > 15:
-            print("Event number out of range: ", event.number)
-        trellis.pixels[event.number] = WHITE
-        if shuffled_names[event.number] != "":
-            play_file(shuffled_names[event.number])
-    # turn the LED off when a rising edge is detected
-    elif event.edge == NeoTrellis.EDGE_FALLING:
-        trellis.pixels[event.number] = shuffled_colors[event.number]
+	# turn the LED on when a rising edge is detected
+	if event.edge == NeoTrellis.EDGE_RISING:  # Trellis button pushed
+		trellis.pixels[event.number] = WHITE
+		if shuffled_names[event.number] != "":
+			play_file(shuffled_names[event.number])
+			print("START MUSIC")
+	# turn the LED off when a rising edge is detected
+	if event.edge == NeoTrellis.EDGE_FALLING:
+		print("STOP MUSIC")
+		pygame.mixer.music.stop()
+			
+		trellis.pixels[event.number] = shuffled_colors[event.number]
 
 def run(instrument):
     global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled

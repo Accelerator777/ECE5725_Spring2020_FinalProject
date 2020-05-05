@@ -3,10 +3,10 @@ from pygame.locals import*
 import os
 import RPi.GPIO as GPIO
 import time
-# import free_mode
-# import guide_mode
-# import record_mode
-# import voice_recognition
+import free_mode
+import guide_mode
+import record_mode
+import voice_recognition
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -63,7 +63,7 @@ def free_menu():
     screen.fill(BLACK)
 
     title_text={'free mode':(160,25)}
-    button_text={'back':(270,220)}
+    button_text={'piano':(50,220),'guitar':(160,220),'record mode':(270,220)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
@@ -133,11 +133,6 @@ while code_running:
                         flag_main = False
                         flag_free = True
                         free_menu()
-                        # status = play_sound.run("sounds")
-                        if status==0:
-                            flag_main = True
-                            flag_free = False
-                            main_menu()
 
                     elif x>140 and x<180: #guide mode
                         flag_main = False
@@ -155,6 +150,24 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
+                    if x<80: #free mode
+                        flag_main = False
+                        flag_free = True
+                        status = free_mode.run("piano")
+                        if status==0:
+                            flag_main = True
+                            flag_free = False
+                            main_menu()
+
+                    elif x>140 and x<180:
+                        flag_main = False
+                        flag_free = True
+                        status = free_mode.run("guitar")
+                        if status==0:
+                            flag_main = True
+                            flag_free = False
+                            main_menu()
+
                     if x>240:	# back to main menu
                         flag_main = True
                         flag_free = False
