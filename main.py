@@ -133,6 +133,7 @@ while code_running:
                         flag_main = False
                         flag_free = True
                         free_menu()
+
                     elif x>140 and x<180: #guide mode
                         flag_main = False
                         flag_guide = True
