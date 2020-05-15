@@ -9,6 +9,9 @@ import digitalio
 import busio
 from adafruit_neotrellis.neotrellis import NeoTrellis
 from music_data import*
+from pydub import AudioSegment
+from pydub.playback import play
+
 
 #color
 OFF = (0, 0, 0)
@@ -99,7 +102,7 @@ for i in range(16):
 	trellis.activate_key(i, NeoTrellis.EDGE_RISING)
 	# activate falling edge events on all keys
 	trellis.activate_key(i, NeoTrellis.EDGE_FALLING)
-	# set all keys to trigger the blink callback
+	# set all keys to trigger the blinkblink callback
 	trellis.callbacks[i] = blink
 
 	# cycle the LEDs on startup
@@ -123,3 +126,6 @@ while True:
 			time.sleep(0.001)
 			
 		trellis.pixels[melody_lemon[i]] = OFF
+	
+	for i in range(len(record_data)):
+		song = AudioSegment.from_ogg("")
