@@ -85,12 +85,16 @@ def guide_menu(string):
 	
     title_text={'guide mode':(160,25)}
     button_text={'piano':(50,220),'guitar':(120,220),'reselect':(200,220),'back':(270,220)}
-    button_melody={'lemon':(),'little star'(),''}
+    button_melody={'lemon':(50,100),'little star':(160,100),'dango family':(270,100)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
     for my_text,text_pos in button_text.items():
+        text_surface=font_1.render(my_text,True,WHITE)
+        rect=text_surface.get_rect(center=text_pos)
+        screen.blit(text_surface,rect)
+    for my_text,text_pos in button_melody.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
@@ -108,6 +112,7 @@ def record_menu(string):
 
     title_text={'record mode':(160,25)}
     button_text={'piano':(50,220),'guitar':(120,220),'load':(200,220),'back':(270,220)}
+    button_melody={'lemon':(50,100),'little star':(160,100),'dango family':(270,100)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
@@ -116,7 +121,11 @@ def record_menu(string):
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
-	
+	for my_text,text_pos in button_melody.items():
+        text_surface=font_1.render(my_text,True,WHITE)
+        rect=text_surface.get_rect(center=text_pos)
+        screen.blit(text_surface,rect)
+        
     text=font_1.render(string,True,WHITE)
     textRect=text.get_rect()
     textRect.center=(160,180)
