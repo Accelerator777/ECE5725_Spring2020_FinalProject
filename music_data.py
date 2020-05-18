@@ -21,7 +21,9 @@ melody_dango = [NOTE_A5, NOTE_G5, NOTE_C6, NOTE_C6, NOTE_D6, NOTE_D6,
     NOTE_C6, NOTE_D6, NOTE_D6, NOTE_E6, NOTE_E6, NOTE_C6]
 
 
-noteDurations_dango = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+noteDurations_dango = [
+    2, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4,  
+]
 
 
 #lemon
