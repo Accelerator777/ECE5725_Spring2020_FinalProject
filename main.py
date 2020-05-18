@@ -234,8 +234,7 @@ while code_running:
                     elif x>100 and x<140:
                         name_temp = "melody_star"
                     elif x>240:  
-                        name_temp = "melody_dango"  
-
+                        name_temp = "melody_dango"
 
     if flag_record:
         for event in pygame.event.get():
