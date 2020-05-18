@@ -156,7 +156,7 @@ def run(instrument,melody):
 			# the trellis can only be read every 1 milliseconds or so
 			time.sleep(0.001)
 		
-		trellis.pixels[melody_lemon[i]] = OFF
+		trellis.pixels[notes[i]] = OFF
 
 
 	wav_piano_list = ("piano/00-red-do.wav", "piano/01-purple-re.wav", "piano/02-blue-mi.wav", "piano/03-green-fa.wav", "piano/04-yellow-sol.wav", "piano/05-cyan-la.wav", "piano/06-white-si.wav", "piano/07-red-do.wav", "piano/08-red-re.wav", "piano/09-purple-mi.wav", "piano/10-blue-do.wav", "piano/11-green-re.wav", "piano/12-cyan-mi.wav", "piano/13-yellow-fa.wav", "piano/14-white-sol.wav", "piano/15-red-la.wav")
