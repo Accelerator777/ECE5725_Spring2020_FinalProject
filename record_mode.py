@@ -74,7 +74,7 @@ def blink(event):
 		period_data.append(period_end)
 		print(period_data)
 		
-def run(instrument):
+def run(instrument,melody):
 	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled,record_data,period_data,period_start,period_end
 	path = "/home/pi/Final/"+instrument+"/"
 	buttons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

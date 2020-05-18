@@ -58,7 +58,7 @@ def blink(event):
 	if event.edge == NeoTrellis.EDGE_FALLING:
 		pygame.mixer.music.stop()	
 
-def run(instrument):
+def run(instrument,melody):
 	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled
 	path = "/home/pi/Final/"+instrument+"/"
 	buttons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
