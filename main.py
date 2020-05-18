@@ -198,23 +198,24 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
-                    if x<80: #free mode
+                    name_temp = "melody_star"
+                    if x<80: #guide mode
                         flag_main = False
                         flag_guide = True
                         guide_menu("Instrument: Piano")
-                        status = guide_mode.run("piano")
+                        status = guide_mode.run("piano", name_temp)
                         if status==0:
                             flag_main = True
                             flag_guide = False
                             main_menu()
                         elif status==1:
                             guide_menu("Select instrument")
-
+                    
                     elif x>100 and x<140:
                         flag_main = False
                         flag_guide = True
                         guide_menu("Instrument: Guitar")
-                        status = guide_mode.run("guitar")
+                        status = guide_mode.run("guitar", name_temp)
                         if status==0:
                             flag_main = True
                             flag_guide = False
@@ -226,17 +227,28 @@ while code_running:
                         flag_main = True
                         flag_guide = False
                         main_menu()
+
+                if y>80 and y<120:
+                    if x<80:# first song
+                        name_temp = "melody_lemon"
+                    elif x>100 and x<140:
+                        name_temp = "melody_star"
+                    elif x>240:  
+                        name_temp = "melody_dango"  
+
+
     if flag_record:
         for event in pygame.event.get():
             if(event.type is MOUSEBUTTONUP):
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
+                    name_temp = "melody_star"
                     if x<80:
                         flag_main = False
                         flag_record = True
                         record_menu("Piano Recording...")
-                        status = record_mode.run("piano")
+                        status = record_mode.run("piano", name_temp)
                         if status==0:
                             flag_main = True
                             flag_record = False
@@ -248,7 +260,7 @@ while code_running:
                         flag_main = False
                         flag_record = True
                         record_menu("Guitar Recording...")
-                        status = record_mode.run("guitar")
+                        status = record_mode.run("guitar", name_temp)
                         if status==0:
                             flag_main = True
                             flag_record = False
@@ -266,4 +278,12 @@ while code_running:
                         flag_record = False
                         pygame.mixer.music.stop()
                         main_menu()
+
+                if y>80 and y<120:
+                    if x<80:# first song
+                        name_temp = "melody_lemon"
+                    elif x>100 and x<140:
+                        name_temp = "melody_star"
+                    elif x>240:  
+                        name_temp = "melody_dango" 
 GPIO.cleanup()
