@@ -125,7 +125,7 @@ def record_menu(string):
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
-        
+
     text=font_1.render(string,True,WHITE)
     textRect=text.get_rect()
     textRect.center=(160,180)

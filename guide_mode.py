@@ -118,15 +118,16 @@ def run(instrument,melody):
 				# the trellis can only be read every 1 milliseconds or so
 				time.sleep(0.001)
 			
+				for event in pygame.event.get():
+					if(event.type is MOUSEBUTTONUP):
+						pos=pygame.mouse.get_pos()
+						x,y=pos
+						if y>200:
+							if x>180 and x<220:
+								return 1
+							elif x>240:
+								for i in range(16):
+									trellis.pixels[i] = OFF
+								return 0
+
 			trellis.pixels[melody_lemon[i]] = OFF
-			for event in pygame.event.get():
-				if(event.type is MOUSEBUTTONUP):
-					pos=pygame.mouse.get_pos()
-					x,y=pos
-					if y>200:
-						if x>180 and x<220:
-							return 1
-						elif x>240:
-							for i in range(16):
-								trellis.pixels[i] = OFF
-							return 0

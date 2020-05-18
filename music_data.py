@@ -11,9 +11,9 @@ NOTE_E6 = 9
 
 
 #little start
-melody_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+melody_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5, NOTE_A5, NOTE_G5]
 
-noteDurations_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+noteDurations_star = [2, 2, 2, 2, 2, 2, 2]
 
 #dango
 melody_dango = [NOTE_A5, NOTE_G5, NOTE_C6, NOTE_C6, NOTE_D6,
