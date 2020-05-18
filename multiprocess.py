@@ -42,7 +42,7 @@ def parallel_convertor():
     worker_2.start()
     worker_3.start()
 
-    worker_0.wait()
-    worker_1.wait()
-    worker_2.wait()
-    worker_3.wait()
+    worker_0.join()
+    worker_1.join()
+    worker_2.join()
+    worker_3.join()
