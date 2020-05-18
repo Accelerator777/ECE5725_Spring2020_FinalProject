@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import free_mode
 import guide_mode
-#import record_mode
+import record_mode
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -223,13 +223,28 @@ while code_running:
                 x,y=pos
                 if y>200:
                     if x<80:
-                        record_menu("Recording...")
+                        flag_main = False
+                        flag_record = True
+                        record_menu("Piano Recording...")
+                        status = record_mode.run("piano")
+                        if status==0:
+                            flag_main = True
+                            flag_record = False
+                            main_menu()
+                        elif status==1:
+                            record_menu("Select instrument")
 
                     elif x>100 and x<140:
-                        record_menu("Playing...")
-                        
-                    elif x>180 and x<220:
-                        record_menu("Loading...")   
+                        flag_main = False
+                        flag_record = True
+                        record_menu("Guitar Recording...")
+                        status = record_mode.run("piano")
+                        if status==0:
+                            flag_main = True
+                            flag_record = False
+                            main_menu()
+                        elif status==1:
+                            record_menu("Select instrument") 
                     
                     elif x>240:	# back to main menu
                         flag_main = True
