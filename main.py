@@ -245,9 +245,15 @@ while code_running:
                             main_menu()
                         elif status==1:
                             record_menu("Select instrument") 
-                    
+
+                    elif x>180 and x<220:
+                        if status==1:
+                            pygame.mixer.music.load("output_four.mp3")
+                            pygame.mixer.music.play()
+
                     elif x>240:	# back to main menu
                         flag_main = True
                         flag_record = False
+                        pygame.mixer.music.stop()
                         main_menu()
 GPIO.cleanup()
