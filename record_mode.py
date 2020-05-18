@@ -146,6 +146,8 @@ def run(instrument):
 			output = AudioSegment.from_file(wav_piano_list[record_data[0]], format="wav")
 			first_output = period_data[0] * 1000
 			slice_output = output[:first_output]
+			record_data = record_data[1:]
+			period_data = period_data[1:]
 
 			for i in range(1, len(record_data)):
 					song = AudioSegment.from_file(wav_piano_list[record_data[i]], format="wav")
@@ -154,10 +156,12 @@ def run(instrument):
 					slice_output = slice_output + slice_song
 					slice_output.export("out.wav", format="wav")
 
-		elif(instrument=="guitar"):
+		if(instrument=="guitar"):
 			output = AudioSegment.from_file(wav_guitar_list[record_data[0]], format="wav")
 			first_output = period_data[0] * 1000
 			slice_output = output[:first_output]
+			record_data = record_data[1:]
+			period_data = period_data[1:]
 
 			for i in range(1, len(record_data)):
 					song = AudioSegment.from_file(wav_guitar_list[record_data[i]], format="wav")
