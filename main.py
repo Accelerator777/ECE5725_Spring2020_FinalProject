@@ -255,7 +255,7 @@ while code_running:
                             flag_record = False
                             main_menu()
                         elif status==1:
-                            record_menu("Select instrument")
+                            record_menu("loading...")
 
                     elif x>100 and x<140:
                         flag_main = False
@@ -267,7 +267,7 @@ while code_running:
                             flag_record = False
                             main_menu()
                         elif status==1:
-                            record_menu("Select instrument") 
+                            record_menu("loading...") 
 
                     elif x>180 and x<220:
                         if status==1:
