@@ -12,7 +12,7 @@ from music_data import*
 from pydub.pydub import AudioSegment
 from pydub.pydub.playback import play
 from multiprocess import*
-
+from copy import deepcopy
 
 #color
 OFF = (0, 0, 0)
@@ -75,7 +75,7 @@ def blink(event):
 		print(period_data)
 		
 def run(instrument):
-	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled
+	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled,record_data,period_data,period_start,period_end
 	path = "/home/pi/Final/"+instrument+"/"
 	buttons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	button_colors = [OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF]
@@ -143,9 +143,9 @@ def run(instrument):
 	wav_guitar_list = ("guitar/00-red-c3.wav", "guitar/01-purple-d3.wav", "guitar/02-blue-e3.wav", "guitar/03-green-f3.wav", "guitar/04-yellow-g3.wav", "guitar/05-cyan-a3.wav", "guitar/06-white-b3.wav", "guitar/07-red-c4.wav", "guitar/08-red-d4.wav", "guitar/09-purple-e4.wav", "guitar/10-blue-f4.wav", "guitar/11-green-g4.wav", "guitar/12-cyan-a4.wav", "guitar/13-yellow-b4.wav", "guitar/14-white-c5.wav","guitar/15-red-d5.wav")
 
 	if(instrument=="piano"):
-		temp_list = wav_piano_list.copy()
+		temp_list = deepcopy(wav_piano_list)
 	elif(instrument=="guitar"):
-		temp_list = wav_guitar_list.copy()
+		temp_list = deepcopy(wav_guitar_list)
 		
 	output = AudioSegment.from_file(temp_list[record_data[0]], format="wav")
 	first_output = period_data[0] * 1000
