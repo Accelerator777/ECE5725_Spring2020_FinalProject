@@ -238,7 +238,7 @@ while code_running:
                         flag_main = False
                         flag_record = True
                         record_menu("Guitar Recording...")
-                        status = record_mode.run("piano")
+                        status = record_mode.run("guitar")
                         if status==0:
                             flag_main = True
                             flag_record = False

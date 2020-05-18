@@ -75,7 +75,7 @@ def blink(event):
 		print(period_data)
 		
 def run(instrument):
-	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled
+	global path,wavnames,shuffled_names,buttons,button_colors,shuffled_colors,Shuffled, record_data, period_data, period_start, period_end
 	path = "/home/pi/Final/"+instrument+"/"
 	buttons = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	button_colors = [OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF]
@@ -149,62 +149,99 @@ def run(instrument):
 			record_data = record_data[1:]
 			period_data = period_data[1:]
 
-			for i in range(1, len(record_data)):
+			for i in range(len(record_data)):
 					song = AudioSegment.from_file(wav_piano_list[record_data[i]], format="wav")
 					first_seconds = period_data[i] * 1000
 					slice_song = song[:first_seconds]
 					slice_output = slice_output + slice_song
 					slice_output.export("out.wav", format="wav")
+					four_core = AudioSegment.from_file("out.wav", format="wav")
 
-		if(instrument=="guitar"):
-			output = AudioSegment.from_file(wav_guitar_list[record_data[0]], format="wav")
-			first_output = period_data[0] * 1000
-			slice_output = output[:first_output]
-			record_data = record_data[1:]
-			period_data = period_data[1:]
+			count = four_core.duration_seconds
+			print(count)
+			count_four = count/4
+			print(count_four)
+			core0 = four_core[:count_four*1000]
+			core1 = four_core[count_four*1000:count_four*2000]
+			core2 = four_core[count_four*2000:count_four*3000]
+			core3 = four_core[count_four*3000:]
 
-			for i in range(1, len(record_data)):
-					song = AudioSegment.from_file(wav_guitar_list[record_data[i]], format="wav")
-					first_seconds = period_data[i] * 1000
-					slice_song = song[:first_seconds]
-					slice_output = slice_output + slice_song
-					slice_output.export("out.wav", format="wav")
+			core0.export("out0.wav", format="wav")
+			core1.export("out1.wav", format="wav")
+			core2.export("out2.wav", format="wav")
+			core3.export("out3.wav", format="wav")
 
+			parallel_convertor()
 
-		four_core = AudioSegment.from_file("out.wav", format="wav")
-		count = four_core.duration_seconds
-		print(count)
-		count_four = count/4
-		print(count_four)
-		core0 = four_core[:count_four*1000]
-		core1 = four_core[count_four*1000:count_four*2000]
-		core2 = four_core[count_four*2000:count_four*3000]
-		core3 = four_core[count_four*3000:]
+			core0_read = AudioSegment.from_file("temp0.mp3", format="mp3")
+			core1_read = AudioSegment.from_file("temp1.mp3", format="mp3")
+			core2_read = AudioSegment.from_file("temp2.mp3", format="mp3")
+			core3_read = AudioSegment.from_file("temp3.mp3", format="mp3")
 
-		core0.export("out0.wav", format="wav")
-		core1.export("out1.wav", format="wav")
-		core2.export("out2.wav", format="wav")
-		core3.export("out3.wav", format="wav")
-
-		parallel_convertor()
-
-		core0_read = AudioSegment.from_file("temp0.mp3", format="mp3")
-		core1_read = AudioSegment.from_file("temp1.mp3", format="mp3")
-		core2_read = AudioSegment.from_file("temp2.mp3", format="mp3")
-		core3_read = AudioSegment.from_file("temp3.mp3", format="mp3")
-
-		four_core_output = core0_read + core1_read + core2_read + core3_read
-		four_core_output.export("output_four.mp3", format="mp3")
+			four_core_output = core0_read + core1_read + core2_read + core3_read
+			four_core_output.export("output_four.mp3", format="mp3")
 		
-		for event in pygame.event.get():
-			if(event.type is MOUSEBUTTONUP):
-				pos=pygame.mouse.get_pos()
-				x,y=pos
-				if y>200:
-					if x>180 and x<220:
-						return 1
-					elif x>240:
-						for i in range(16):
-							trellis.pixels[i] = OFF
-						return 0
+			for event in pygame.event.get():
+				if(event.type is MOUSEBUTTONUP):
+					pos=pygame.mouse.get_pos()
+					x,y=pos
+					if y>200:
+						if x>180 and x<220:
+							return 1
+						elif x>240:
+							for i in range(16):
+								trellis.pixels[i] = OFF
+							return 0
+
+		# elif(instrument=="guitar"):
+		# 	output = AudioSegment.from_file(wav_guitar_list[record_data[0]], format="wav")
+		# 	first_output = period_data[0] * 1000
+		# 	slice_output = output[:first_output]
+		# 	record_data = record_data[1:]
+		# 	period_data = period_data[1:]
+
+		# 	for i in range(len(record_data)):
+		# 			song = AudioSegment.from_file(wav_guitar_list[record_data[i]], format="wav")
+		# 			first_seconds = period_data[i] * 1000
+		# 			slice_song = song[:first_seconds]
+		# 			slice_output = slice_output + slice_song
+		# 			slice_output.export("out.wav", format="wav")
+
+
+		# 	four_core = AudioSegment.from_file("out.wav", format="wav")
+		# 	count = four_core.duration_seconds
+		# 	print(count)
+		# 	count_four = count/4
+		# 	print(count_four)
+		# 	core0 = four_core[:count_four*1000]
+		# 	core1 = four_core[count_four*1000:count_four*2000]
+		# 	core2 = four_core[count_four*2000:count_four*3000]
+		# 	core3 = four_core[count_four*3000:]
+
+		# 	core0.export("out0.wav", format="wav")
+		# 	core1.export("out1.wav", format="wav")
+		# 	core2.export("out2.wav", format="wav")
+		# 	core3.export("out3.wav", format="wav")
+
+		# 	parallel_convertor()
+
+		# 	core0_read = AudioSegment.from_file("temp0.mp3", format="mp3")
+		# 	core1_read = AudioSegment.from_file("temp1.mp3", format="mp3")
+		# 	core2_read = AudioSegment.from_file("temp2.mp3", format="mp3")
+		# 	core3_read = AudioSegment.from_file("temp3.mp3", format="mp3")
+
+		# 	four_core_output = core0_read + core1_read + core2_read + core3_read
+		# 	four_core_output.export("output_four.mp3", format="mp3")
+		
+		# 	for event in pygame.event.get():
+		# 		if(event.type is MOUSEBUTTONUP):
+		# 			pos=pygame.mouse.get_pos()
+		# 			x,y=pos
+		# 			if y>200:
+		# 				if x>180 and x<220:
+		# 					return 1
+		# 				elif x>240:
+		# 					for i in range(16):
+		# 						trellis.pixels[i] = OFF
+		# 					return 0
 
