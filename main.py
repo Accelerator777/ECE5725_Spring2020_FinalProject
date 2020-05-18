@@ -4,9 +4,8 @@ import os
 import RPi.GPIO as GPIO
 import time
 import free_mode
-import guide_mode
+#import guide_mode
 #import record_mode
-#import voice_recognition
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -228,7 +227,8 @@ while code_running:
                     
                     elif x>100 and x<140:
                         record_menu("Playing...")
-
+                        
+                            
                     elif x>180 and x<220:
                         record_menu("Loading...")
                         
