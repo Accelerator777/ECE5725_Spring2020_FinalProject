@@ -204,5 +204,3 @@ def run(instrument):
 						for i in range(16):
 							trellis.pixels[i] = OFF
 						return 0
-
-
