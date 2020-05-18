@@ -143,4 +143,4 @@ def run(instrument,melody):
 									trellis.pixels[i] = OFF
 								return 0
 
-			trellis.pixels[melody_lemon[i]] = OFF
+			trellis.pixels[notes[i]] = OFF

@@ -231,10 +231,13 @@ while code_running:
                 if y>80 and y<120:
                     if x<80:# first song
                         name_temp = "melody_lemon"
+                        guide_menu("lemon selected")
                     elif x>100 and x<140:
                         name_temp = "melody_star"
+                        guide_menu("little star selected")
                     elif x>240:  
                         name_temp = "melody_dango"
+                        guide_menu("dango family selected")
 
     if flag_record:
         for event in pygame.event.get():
@@ -281,8 +284,11 @@ while code_running:
                 if y>80 and y<120:
                     if x<80:# first song
                         name_temp = "melody_lemon"
+                        record_menu("lemon selected")
                     elif x>100 and x<140:
                         name_temp = "melody_star"
+                        record_menu("little star selected")
                     elif x>240:  
-                        name_temp = "melody_dango" 
+                        name_temp = "melody_dango"
+                        record_menu("dango family selected")
 GPIO.cleanup()
