@@ -124,74 +124,68 @@ def run(instrument):
 		trellis.pixels[i] = OFF
 		time.sleep(0.05)
 
-	while True:
-		for i in range(len(melody_lemon)):
-			trellis.pixels[melody_lemon[i]] = COLOR_TUPLES[i%len(COLOR_TUPLES)]
+	# play begins
+	for i in range(len(melody_lemon)):
+		trellis.pixels[melody_lemon[i]] = COLOR_TUPLES[i%len(COLOR_TUPLES)]
 
-			time_start = time.time()
-			while (time.time() - time_start < 0.25*noteDurations_lemon[i]):
-				# call the sync function call any triggered callbacks
-				trellis.sync()
+		time_start = time.time()
+		while (time.time() - time_start < 0.25*noteDurations_lemon[i]):
+			# call the sync function call any triggered callbacks
+			trellis.sync()
 
-				# the trellis can only be read every 1 milliseconds or so
-				time.sleep(0.001)
-			
-			trellis.pixels[melody_lemon[i]] = OFF
-	
-
-		wav_piano_list = ("piano/00-red-do.wav", "piano/01-purple-re.wav", "piano/02-blue-mi.wav", "piano/03-green-fa.wav", "piano/04-yellow-sol.wav", "piano/05-cyan-la.wav", "piano/06-white-si.wav", "piano/07-red-do.wav", "piano/08-red-re.wav", "piano/09-purple-mi.wav", "piano/10-blue-do.wav", "piano/11-green-re.wav", "piano/12-cyan-mi.wav", "piano/13-yellow-fa.wav", "piano/14-white-sol.wav", "piano/15-red-la.wav")
-		wav_guitar_list = ("guitar/00-red-c3.wav", "guitar/01-purple-d3.wav", "guitar/02-blue-e3.wav", "guitar/03-green-f3.wav", "guitar/04-yellow-g3.wav", "guitar/05-cyan-a3.wav", "guitar/06-white-b3.wav", "guitar/07-red-c4.wav", "guitar/08-red-d4.wav", "guitar/09-purple-e4.wav", "guitar/10-blue-f4.wav", "guitar/11-green-g4.wav", "guitar/12-cyan-a4.wav", "guitar/13-yellow-b4.wav", "guitar/14-white-c5.wav","guitar/15-red-d5.wav")
-
-		if(instrument=="piano"):
-			output = AudioSegment.from_file(wav_piano_list[record_data[0]], format="wav")
-			first_output = period_data[0] * 1000
-			slice_output = output[:first_output]
-
-			for i in range(1, len(record_data)):
-					song = AudioSegment.from_file(wav_piano_list[record_data[i]], format="wav")
-					first_seconds = period_data[i] * 1000
-					slice_song = song[:first_seconds]
-					slice_output = slice_output + slice_song
-					slice_output.export("out.wav", format="wav")
-
-		elif(instrument=="guitar"):
-			output = AudioSegment.from_file(wav_guitar_list[record_data[0]], format="wav")
-			first_output = period_data[0] * 1000
-			slice_output = output[:first_output]
-
-			for i in range(1, len(record_data)):
-					song = AudioSegment.from_file(wav_guitar_list[record_data[i]], format="wav")
-					first_seconds = period_data[i] * 1000
-					slice_song = song[:first_seconds]
-					slice_output = slice_output + slice_song
-					slice_output.export("out.wav", format="wav")
-
-
-		four_core = AudioSegment.from_file("out.wav", format="wav")
-		count = four_core.duration_seconds
-		print(count)
-		count_four = count/4
-		print(count_four)
-		core0 = four_core[:count_four*1000]
-		core1 = four_core[count_four*1000:count_four*2000]
-		core2 = four_core[count_four*2000:count_four*3000]
-		core3 = four_core[count_four*3000:]
-
-		core0.export("out0.wav", format="wav")
-		core1.export("out1.wav", format="wav")
-		core2.export("out2.wav", format="wav")
-		core3.export("out3.wav", format="wav")
-
-		parallel_convertor()
-
-		core0_read = AudioSegment.from_file("temp0.mp3", format="mp3")
-		core1_read = AudioSegment.from_file("temp1.mp3", format="mp3")
-		core2_read = AudioSegment.from_file("temp2.mp3", format="mp3")
-		core3_read = AudioSegment.from_file("temp3.mp3", format="mp3")
-
-		four_core_output = core0_read + core1_read + core2_read + core3_read
-		four_core_output.export("output_four.mp3", format="mp3")
+			# the trellis can only be read every 1 milliseconds or so
+			time.sleep(0.001)
 		
+		trellis.pixels[melody_lemon[i]] = OFF
+
+
+	wav_piano_list = ("piano/00-red-do.wav", "piano/01-purple-re.wav", "piano/02-blue-mi.wav", "piano/03-green-fa.wav", "piano/04-yellow-sol.wav", "piano/05-cyan-la.wav", "piano/06-white-si.wav", "piano/07-red-do.wav", "piano/08-red-re.wav", "piano/09-purple-mi.wav", "piano/10-blue-do.wav", "piano/11-green-re.wav", "piano/12-cyan-mi.wav", "piano/13-yellow-fa.wav", "piano/14-white-sol.wav", "piano/15-red-la.wav")
+	wav_guitar_list = ("guitar/00-red-c3.wav", "guitar/01-purple-d3.wav", "guitar/02-blue-e3.wav", "guitar/03-green-f3.wav", "guitar/04-yellow-g3.wav", "guitar/05-cyan-a3.wav", "guitar/06-white-b3.wav", "guitar/07-red-c4.wav", "guitar/08-red-d4.wav", "guitar/09-purple-e4.wav", "guitar/10-blue-f4.wav", "guitar/11-green-g4.wav", "guitar/12-cyan-a4.wav", "guitar/13-yellow-b4.wav", "guitar/14-white-c5.wav","guitar/15-red-d5.wav")
+
+	if(instrument=="piano"):
+		temp_list = wav_piano_list.copy()
+	elif(instrument=="guitar"):
+		temp_list = wav_guitar_list.copy()
+		
+	output = AudioSegment.from_file(temp_list[record_data[0]], format="wav")
+	first_output = period_data[0] * 1000
+	slice_output = output[:first_output]
+	record_data = record_data[1:]
+	period_data = period_data[1:]
+
+	for i in range(len(record_data)):
+			song = AudioSegment.from_file(temp_list[record_data[i]], format="wav")
+			first_seconds = period_data[i] * 1000
+			slice_song = song[:first_seconds]
+			slice_output = slice_output + slice_song
+			slice_output.export("out.wav", format="wav")
+			four_core = AudioSegment.from_file("out.wav", format="wav")
+
+	count = four_core.duration_seconds
+	print(count)
+	count_four = count/4
+	print(count_four)
+	core0 = four_core[:count_four*1000]
+	core1 = four_core[count_four*1000:count_four*2000]
+	core2 = four_core[count_four*2000:count_four*3000]
+	core3 = four_core[count_four*3000:]
+
+	core0.export("out0.wav", format="wav")
+	core1.export("out1.wav", format="wav")
+	core2.export("out2.wav", format="wav")
+	core3.export("out3.wav", format="wav")
+
+	parallel_convertor()
+
+	core0_read = AudioSegment.from_file("temp0.mp3", format="mp3")
+	core1_read = AudioSegment.from_file("temp1.mp3", format="mp3")
+	core2_read = AudioSegment.from_file("temp2.mp3", format="mp3")
+	core3_read = AudioSegment.from_file("temp3.mp3", format="mp3")
+
+	four_core_output = core0_read + core1_read + core2_read + core3_read
+	four_core_output.export("output_four.mp3", format="mp3")
+	
+	while True:
 		for event in pygame.event.get():
 			if(event.type is MOUSEBUTTONUP):
 				pos=pygame.mouse.get_pos()
@@ -203,4 +197,5 @@ def run(instrument):
 						for i in range(16):
 							trellis.pixels[i] = OFF
 						return 0
+
 

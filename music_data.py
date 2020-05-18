@@ -9,9 +9,22 @@ NOTE_C6 = 7
 NOTE_D6 = 8
 NOTE_E6 = 9
 
-melody_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5
-    ]
 
+#little start
+melody_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+
+noteDurations_star = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+
+#dango
+melody_dango = [NOTE_A5, NOTE_G5, NOTE_C6, NOTE_C6, NOTE_D6, NOTE_D6, 
+    NOTE_E6, NOTE_C6, NOTE_G5, NOTE_A5, NOTE_G5, NOTE_C6,
+    NOTE_C6, NOTE_D6, NOTE_D6, NOTE_E6, NOTE_E6, NOTE_C6]
+
+
+noteDurations_dango = [NOTE_C5, NOTE_C5, NOTE_G5, NOTE_G5, NOTE_A5,NOTE_A5, NOTE_G5]
+
+
+#lemon
 melody_lemon = [NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5, NOTE_D6,
     NOTE_B5, NOTE_G5, NOTE_E5, NOTE_B5, NOTE_A5, NOTE_G5,
     NOTE_C5, NOTE_G5, NOTE_E5,
@@ -27,6 +40,7 @@ melody_lemon = [NOTE_C6, NOTE_D6, NOTE_E6, NOTE_C6, NOTE_A5, NOTE_D6,
     NOTE_D5, NOTE_E5, NOTE_F5,
     NOTE_G5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_G5, NOTE_C6,
     NOTE_E6, NOTE_D6, NOTE_D6, NOTE_D6, NOTE_C6, NOTE_C6]
+
 
 noteDurations_lemon = [
     2, 2, 4, 2, 5, 4,
