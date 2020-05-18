@@ -106,7 +106,7 @@ def record_menu(string):
     screen.fill(BLACK)
 
     title_text={'record mode':(160,25)}
-    button_text={'start':(50,220),'play':(120,220),'load':(200,220),'back':(270,220)}
+    button_text={'piano':(50,220),'guitar':(120,220),'load':(200,220),'back':(270,220)}
     for my_text,text_pos in title_text.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
