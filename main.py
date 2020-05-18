@@ -4,7 +4,7 @@ import os
 import RPi.GPIO as GPIO
 import time
 import free_mode
-#import guide_mode
+import guide_mode
 #import record_mode
 
 GPIO.setmode(GPIO.BCM)
@@ -227,11 +227,10 @@ while code_running:
                     
                     elif x>100 and x<140:
                         record_menu("Playing...")
-                        
-                            
+                    
                     elif x>180 and x<220:
-                        record_menu("Loading...")
-                        
+                        record_menu("Loading...")   
+                    
                     elif x>240:	# back to main menu
                         flag_main = True
                         flag_record = False
