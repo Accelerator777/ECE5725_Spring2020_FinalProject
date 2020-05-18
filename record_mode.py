@@ -93,9 +93,9 @@ def run(instrument):
 
 	dir = "/home/pi/Final/"
 	for f in os.listdir(dir):
-		if re.search("*.wav", f):
+		if re.search(".wav", f):
 			os.remove(os.path.join(dir, f))
-		if re.search("*.mp3", f):
+		if re.search(".mp3", f):
 			os.remove(os.path.join(dir, f))
 
 	shuffled = False
@@ -153,7 +153,7 @@ def run(instrument):
 		temp_list = deepcopy(wav_piano_list)
 	elif(instrument=="guitar"):
 		temp_list = deepcopy(wav_guitar_list)
-		
+
 	output = AudioSegment.from_file(temp_list[record_data[0]], format="wav")
 	first_output = period_data[0] * 1000
 	slice_output = output[:first_output]
