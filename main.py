@@ -121,7 +121,7 @@ def record_menu(string):
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
-	for my_text,text_pos in button_melody.items():
+    for my_text,text_pos in button_melody.items():
         text_surface=font_1.render(my_text,True,WHITE)
         rect=text_surface.get_rect(center=text_pos)
         screen.blit(text_surface,rect)
