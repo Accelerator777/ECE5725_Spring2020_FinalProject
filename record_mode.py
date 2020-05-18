@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import*
 import time
-import os
+import os, re
 import random
 import board
 from board import SCL, SDA
@@ -90,6 +90,13 @@ def run(instrument):
 		print("No wav files found in sounds directory")
 	else:
 		print("Audio files found: ", wavefiles)
+
+	dir = "/home/pi/Final/"
+	for f in os.listdir(dir):
+		if re.search("*.wav", f):
+			os.remove(os.path.join(dir, f))
+		if re.search("*.mp3", f):
+			os.remove(os.path.join(dir, f))
 
 	shuffled = False
 
