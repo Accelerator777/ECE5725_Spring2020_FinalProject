@@ -131,12 +131,25 @@ def run(instrument,melody):
 		trellis.pixels[i] = OFF
 		time.sleep(0.05)
 
+	if(melody=="melody_lemon"):
+		notes = melody_lemon.copy()
+		duration = noteDurations_lemon.copy()
+	elif(melody=="melody_star"):
+		notes = melody_star.copy()
+		duration = noteDurations_star.copy()
+	elif(melody=="melody_dango"):
+		notes = melody_dango.copy()
+		duration = noteDurations_dango.copy()
+	else:
+		notes = melody_lemon.copy()
+		duration = noteDurations_lemon.copy()
+
 	# play begins
-	for i in range(len(melody_lemon)):
-		trellis.pixels[melody_lemon[i]] = COLOR_TUPLES[i%len(COLOR_TUPLES)]
+	for i in range(len(notes)):
+		trellis.pixels[notes[i]] = COLOR_TUPLES[i%len(COLOR_TUPLES)]
 
 		time_start = time.time()
-		while (time.time() - time_start < 0.25*noteDurations_lemon[i]):
+		while (time.time() - time_start < 0.25*duration[i]):
 			# call the sync function call any triggered callbacks
 			trellis.sync()
 
