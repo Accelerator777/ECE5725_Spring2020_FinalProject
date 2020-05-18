@@ -39,6 +39,7 @@ flag_free = False
 flag_guide = False
 flag_record = False
 
+name_temp = "melody_star"
 
 # main menu
 def main_menu():
@@ -198,7 +199,6 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
-                    name_temp = "melody_star"
                     if x<80: #guide mode
                         flag_main = False
                         flag_guide = True
@@ -245,7 +245,6 @@ while code_running:
                 pos=pygame.mouse.get_pos()
                 x,y=pos
                 if y>200:
-                    name_temp = "melody_star"
                     if x<80:
                         flag_main = False
                         flag_record = True
