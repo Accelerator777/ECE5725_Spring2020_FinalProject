@@ -1,3 +1,10 @@
+# multiprocess.py
+#
+# Author: Siqi Qian
+# Date: 5/18/2020
+# Description: Functions for recording and playback
+#			   Edited based on guide_mode.py
+
 import pygame
 from pygame.locals import*
 import time

@@ -2,7 +2,7 @@
 #
 # Author: Ke Liu
 # Date: 5/18/2020
-# Description: Functions for recording and playback
+# Description: Multi-thread scheduler and communication
 
 import multiprocessing
 import subprocess

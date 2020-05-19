@@ -1,3 +1,9 @@
+# music_data.py
+#
+# Author: Siqi Qian
+# Date: 5/18/2020
+# Description: Music song samples notes data list and duration data list
+
 NOTE_C5 = 0
 NOTE_D5 = 1
 NOTE_E5 = 2

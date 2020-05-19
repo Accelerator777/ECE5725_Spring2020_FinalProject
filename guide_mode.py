@@ -1,3 +1,10 @@
+# multiprocess.py
+#
+# Author: Ke Liu
+# Date: 5/18/2020
+# Description: Functions for guide_mode
+# 			   Edited based on free_mode.py
+
 import pygame
 from pygame.locals import*
 import time

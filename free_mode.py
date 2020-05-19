@@ -1,3 +1,9 @@
+# multiprocess.py
+#
+# Author: Ke Liu
+# Date: 5/18/2020
+# Description: Button color setting, Functions for playing sound when detecting button press
+
 import pygame
 from pygame.locals import*
 import time
