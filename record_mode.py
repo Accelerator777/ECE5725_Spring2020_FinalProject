@@ -1,4 +1,4 @@
-# multiprocess.py
+# record_mode.py
 #
 # Author: Siqi Qian
 # Date: 5/18/2020

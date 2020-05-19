@@ -1,8 +1,9 @@
-# multiprocess.py
+# free_mode.py
 #
-# Author: Ke Liu
+# Author: Siqi Qian
 # Date: 5/18/2020
 # Description: Button color setting, Functions for playing sound when detecting button press
+# Reference: NeoTrellis Soundbox Remix by Mike Barela
 
 import pygame
 from pygame.locals import*
@@ -11,7 +12,6 @@ import os
 import random
 import board
 from board import SCL, SDA
-# import audioio
 import digitalio
 import busio
 from adafruit_neotrellis.neotrellis import NeoTrellis

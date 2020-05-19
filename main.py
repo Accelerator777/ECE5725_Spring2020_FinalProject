@@ -1,5 +1,6 @@
 # main.py
 #
+# Author: Siqi Qian
 # Date: 5/18/2020
 # This is the main function of the program which creates the GUI and calls function as user selects
 
