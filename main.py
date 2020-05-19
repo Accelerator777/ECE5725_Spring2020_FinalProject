@@ -1,3 +1,8 @@
+# main.py
+#
+# Date: 5/18/2020
+# This is the main function of the program which creates the GUI and calls function as user selects
+
 import pygame
 from pygame.locals import*
 import os

@@ -1,3 +1,9 @@
+# multiprocess.py
+#
+# Author: Ke Liu
+# Date: 5/18/2020
+# Description: Functions for recording and playback
+
 import multiprocessing
 import subprocess
 import time
