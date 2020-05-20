@@ -88,6 +88,10 @@ def run(instrument,melody):
 	button_colors = [OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF]
 	shuffled_colors = list(button_colors)
 	Shuffled = False
+	record_data = []
+	period_data = []
+	period_start = 0
+	period_end = 0
 
 	wavnames = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 	shuffled_names = list(wavnames)  # Duplicate list, wavnames is our reference
@@ -180,7 +184,7 @@ def run(instrument,melody):
 	record_data = record_data[1:]
 	period_data = period_data[1:]
 
-	for i in range(len(record_data)):
+	for i in range(len(period_data)):
 			song = AudioSegment.from_file(temp_list[record_data[i]], format="wav")
 			first_seconds = period_data[i] * 1000
 			slice_song = song[:first_seconds]

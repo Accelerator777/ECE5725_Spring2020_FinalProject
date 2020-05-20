@@ -238,7 +238,7 @@ while code_running:
                     if x<80:# first song
                         name_temp = "melody_lemon"
                         guide_menu("lemon selected")
-                    elif x>100 and x<140:
+                    elif x>100 and x<180:
                         name_temp = "melody_star"
                         guide_menu("little star selected")
                     elif x>240:  
@@ -290,7 +290,7 @@ while code_running:
                     if x<80:# first song
                         name_temp = "melody_lemon"
                         record_menu("lemon selected")
-                    elif x>100 and x<140:
+                    elif x>100 and x<180:
                         name_temp = "melody_star"
                         record_menu("little star selected")
                     elif x>240:  
